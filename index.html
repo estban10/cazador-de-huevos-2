@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100b20">
+<title>Cazador de Huevos</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0814;--card:#191128;--purple:#8b5cf6;--cyan:#48e5ff;--gold:#ffd166}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#281347,#0b0814 65%);color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh}
+header{padding:25px 18px 18px;text-align:center}
+.logo{font-size:42px}
+h1{margin:8px 0;font-size:27px}
+h1 span{color:#c5a2ff}
+.sub{color:#b9abc9;font-size:13px}
+main{max-width:650px;margin:auto;padding:0 15px 35px}
+.status{display:flex;align-items:center;gap:9px;background:#171329;border:1px solid #40305d;border-radius:13px;padding:12px;font-size:12px;color:#d7c8ec}
+.dot{width:9px;height:9px;background:#f6bd60;border-radius:50%;box-shadow:0 0 10px #f6bd60}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.card{background:linear-gradient(145deg,#211537,#151020);border:1px solid #45305f;border-radius:17px;padding:16px;box-shadow:0 6px 22px #0003}
+.label{font-size:11px;color:#bca9d3;text-transform:uppercase;letter-spacing:1px}
+.value{font-size:25px;font-weight:800;margin-top:9px}
+.purple{color:#c3a1ff}.gold{color:var(--gold)}.cyan{color:var(--cyan)}
+.section{font-size:17px;margin:24px 2px 12px}
+.server{background:#171125;border:1px solid #38284d;border-radius:15px;padding:15px;margin-bottom:11px}
+.server-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.server-name{font-weight:750}
+.tag{font-size:10px;color:var(--gold);border:1px solid #80632e;border-radius:6px;padding:5px}
+.server p{color:#b9abc9;font-size:12px;line-height:1.5}
+button,.join{border:0;border-radius:10px;padding:12px 15px;font-weight:800;font-size:12px;cursor:pointer}
+.join{background:var(--cyan);color:#08131b;text-decoration:none;display:block;text-align:center}
+.secondary{width:100%;background:#2b1d42;color:#e8dafa;border:1px solid #594078}
+.alert{border-color:#795b31;background:linear-gradient(145deg,#2b2018,#171125)}
+.note{font-size:12px;color:#b9abc9;line-height:1.6}
+footer{text-align:center;color:#796b8b;font-size:11px;padding:20px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">🥚</div>
+<h1>CAZADOR <span>DE HUEVOS</span></h1>
+<div class="sub">STEAL AN EGG · ROBLOX HUNTING PANEL</div>
+</header>
+<main>
+<div class="status"><span class="dot"></span><span id="status">Panel iniciado · Datos en espera de conexión</span></div>
+
+<div class="grid">
+<div class="card"><div class="label">Estado del panel</div><div class="value purple">ACTIVO</div></div>
+<div class="card"><div class="label">Alertas gigantes</div><div class="value gold" id="alerts">0</div></div>
+<div class="card"><div class="label">Servidores verificados</div><div class="value cyan" id="servers">0</div></div>
+<div class="card"><div class="label">Última revisión</div><div class="value" style="font-size:17px" id="time">--:--</div></div>
+</div>
+
+<h2 class="section">⚡ Acceso rápido</h2>
+<div class="card">
+<div class="server-name">Steal An Egg</div>
+<p>Abre la experiencia oficial de Roblox. La disponibilidad de plazas debe verificarse con datos reales.</p>
+<a class="join" href="https://www.roblox.com/games/107778070777162" target="_blank" rel="noopener">JOIN · ABRIR ROBLOX ↗</a>
+</div>
+
+<h2 class="section">🌐 Buscador de servidores</h2>
+<div class="server">
+<div class="server-top"><span class="server-name">Servidores disponibles</span><span class="tag">PENDIENTE DE API</span></div>
+<p>Este panel todavía no está conectado a una fuente de servidores en tiempo real. No muestra jugadores ni plazas inventadas.</p>
+<button class="secondary" onclick="check()">ACTUALIZAR PANEL ↻</button>
+</div>
+
+<h2 class="section">🥚 Detector de huevos gigantes</h2>
+<div class="card alert">
+<div class="server-top"><span class="server-name">🔔 Alertas gigantes</span><span class="tag">SIN CONECTAR</span></div>
+<p id="eggmsg">El detector está preparado visualmente, pero necesita una fuente de eventos real para confirmar la aparición de huevos gigantes.</p>
+<button class="secondary" onclick="info()">COMPROBAR ESTADO</button>
+</div>
+
+<h2 class="section">💬 Notificaciones Discord</h2>
+<div class="card">
+<div class="server-name">Conexión de alertas</div>
+<p>Para enviar alertas automáticas se necesita un servicio seguro en el servidor. Nunca introduzcas un token secreto en esta página pública.</p>
+<a class="join" href="https://discord.com/app" target="_blank" rel="noopener">ABRIR DISCORD ↗</a>
+</div>
+
+<footer>Cazador de Huevos · Panel de seguimiento · v1.0</footer>
+</main>
+<script>
+function check(){
+document.getElementById('time').textContent=new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
+document.getElementById('status').textContent='Panel funcionando · Sin fuente de datos conectada';
+}
+function info(){
+document.getElementById('eggmsg').textContent='Interfaz lista. La detección real requiere conectar una fuente de eventos compatible.';
+}
+check();
+</script>
+</body>
+</html>
